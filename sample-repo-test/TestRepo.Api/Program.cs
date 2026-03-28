@@ -3,7 +3,9 @@ using TestRepo.Api.Extensions;
 using TestRepo.Api.Middlewares;
 using TestRepo.Repository;
 using JwtService = TestRepo.Service.JwtService;
-
+using CategoryService = TestRepo.Service.Category;
+using UserService = TestRepo.Service.User;
+using IdentityService = TestRepo.Service.Identity;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
@@ -21,7 +23,9 @@ builder.Services.AddJwtServices(builder.Configuration);
 builder.Services.AddSwaggerServices();
 
 builder.Services.AddScoped<JwtService.IService, JwtService.Service>();
-
+builder.Services.AddScoped<CategoryService.IService, CategoryService.Service>();
+builder.Services.AddScoped<UserService.IService, UserService.Service>();
+builder.Services.AddScoped<IdentityService.IService, IdentityService.Service>();
 builder.Services.AddTransient<GlobalExceptionHandlerMiddleware>();
 
 // Cuộc đời là một chuỗi các sự kiện,
